@@ -1,0 +1,241 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"></script>
+
+<br>
+
+<div class="ui container">
+    <div class="ui two column doubling stackable grid container">
+        <div class="column">
+            <img class="ui medium image" src={{list.imgUrl}} alt="First slide" >
+
+        </div>
+        <div class="column">
+            <div class="content">
+
+                <h2>{{list.title}}</h2>
+                <ngb-rating [rate]="5"></ngb-rating>
+
+                <p class="price">original price $59.99</p>
+                <div>
+                    <!--<h3> <strong> Our Choice </strong></h3>>-->
+                        <!--<div class="ui red tag large label">Our choice</div>-->
+                        <p>Now ${{list.price}}</p>
+
+                </div>
+
+
+
+                <ol class="ui list">
+                    <li value="*" >Brand</li>
+                    <p >{{list.brand}}</p>
+                    <li value="*">description</li>
+                    <p>{{list.description}}</p>
+
+                </ol>
+
+
+                <div ngbDropdown>
+                    <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>count</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                        <button ngbDropdownItem>1</button>
+                        <button ngbDropdownItem>2</button>
+                        <button ngbDropdownItem>3</button>
+                    </div>
+                </div>
+
+                <!--<mat-form-field>-->
+                    <!--<mat-label>Select an option</mat-label>-->
+                    <!--<mat-select [(value)]="selected">-->
+                        <!--<mat-option>None</mat-option>-->
+                        <!--<mat-option value="option1">option 1</mat-option>-->
+                        <!--<mat-option value="option2">option 2</mat-option>-->
+                        <!--<mat-option value="option3">option 3</mat-option>-->
+                    <!--</mat-select>-->
+                <!--</mat-form-field>-->
+
+
+
+                <br>
+                <div class="ui animated button" tabindex="0">
+                    <div class="hidden content">Notify</div>
+                    <div class="visible content">
+                        <i class="envelope icon"></i>
+                    </div>
+                </div>
+
+
+                <div class="ui animated button" tabindex="0">
+                    <div class="hidden content">Save</div>
+                    <div class="visible content">
+                        <i class="heart icon"></i>
+                    </div>
+                </div>
+                <div class="ui animated blue button" tabindex="0">
+                    <div class="hidden content">Shop</div>
+                    <div class="visible content">
+                        <i class="shop icon"></i>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <br>
+            <p>share with:</p>
+            <button class="ui circular facebook icon button">
+                <i class="facebook icon"></i>
+            </button>
+            <button class="ui circular twitter icon button">
+                <i class="twitter icon"></i>
+            </button>
+            <button class="ui circular linkedin icon button">
+                <i class="linkedin icon"></i>
+            </button>
+            <button class="ui circular google plus icon button">
+                <i class="google plus icon"></i>
+            </button>
+        </div>
+
+
+    </div>
+
+
+ <br>
+    <br>
+
+
+
+    <ngb-tabset>
+        <ngb-tab>
+            <ng-template ngbTabTitle><b>Description</b></ng-template>
+            <ng-template ngbTabContent>{{list.description}}</p>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Reviews">
+            <ng-template ngbTabContent>
+
+                <div class="ui comments" *ngFor="let reviews of reviewList | slice: (page - 1) * pageSize : (page - 1) * pageSize + pageSize">
+                    <div class="comment" *ngFor="let review of reviews;">
+                        <!--<a class="avatar">-->
+                            <!--<img src="/assets/image/helen.jpg">-->
+                        <!--</a>-->
+                        <div class="content">
+                            <a class="author">{{review.reviewerName}}</a>
+                            <div class="metadata">
+                                <div class="date">{{review.reviewTime}}</div>
+                            </div>
+                            <div class="ui star rating" data-rating="3"></div>
+
+                            <div class="text">
+                                <p>{{review.reviewText}}</p>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--<ngb-pagination [collectionSize]=contentSize [(page)]="page" aria-label="Default pagination"></ngb-pagination>-->
+                <!--<ngb-pagination [collectionSize]="contentSize" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>-->
+                <ngb-pagination [collectionSize]=contentSize [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+            <ng-template ngbTabTitle><b>Other Infomation</b></ng-template>
+            <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+                <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+                    craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+                    cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+                    yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+                    shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+                    sint qui sapiente accusamus tattooed echo park.</p>
+            </ng-template>
+        </ngb-tab>
+
+    </ngb-tabset>
+
+
+    <h2><em>Others you may like...</em></h2>
+
+    <div id="card-container">
+    <mat-card class="example-card" role="group">
+        <mat-card-header>
+            <!--<div mat-card-avatar class="example-header-image"></div>-->
+            <!--<mat-card-title>{{list.title}}</mat-card-title>-->
+            <!--<mat-card-subtitle>{{list.price}}</mat-card-subtitle>-->
+        </mat-card-header>
+        <img mat-card-lg-image src={{list.imgUrl}} alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+                <!--The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+                <!--A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+                <!--bred for hunting.-->
+                <mat-card-title>{{list.title}}</mat-card-title>
+                <mat-card-subtitle>{{list.price}}</mat-card-subtitle>
+
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+        </mat-card-actions>
+
+
+    </mat-card>
+
+        <mat-card class="example-card" role="group">
+            <mat-card-header>
+                <!--<div mat-card-avatar class="example-header-image"></div>-->
+                <!--<mat-card-title>{{list.title}}</mat-card-title>-->
+                <!--<mat-card-subtitle>{{list.price}}</mat-card-subtitle>-->
+            </mat-card-header>
+            <img mat-card-lg-image src={{list.imgUrl}} alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p>
+                    <!--The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+                    <!--A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+                    <!--bred for hunting.-->
+                    <mat-card-title>{{list.title}}</mat-card-title>
+                    <mat-card-subtitle>{{list.price}}</mat-card-subtitle>
+
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+
+
+        </mat-card>
+
+        <mat-card class="example-card" role="group">
+            <mat-card-header>
+                <!--<div mat-card-avatar class="example-header-image"></div>-->
+                <!--<mat-card-title>{{list.title}}</mat-card-title>-->
+                <!--<mat-card-subtitle>{{list.price}}</mat-card-subtitle>-->
+            </mat-card-header>
+            <img mat-card-lg-image src={{list.imgUrl}} alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p>
+                    <!--The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+                    <!--A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+                    <!--bred for hunting.-->
+                    <mat-card-title>{{list.title}}</mat-card-title>
+                    <mat-card-subtitle>{{list.price}}</mat-card-subtitle>
+
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+
+
+        </mat-card>
+    </div>
+
+
+
+
